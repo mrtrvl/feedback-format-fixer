@@ -92,6 +92,9 @@
     return (s.includes(sep) || /["\r\n]/.test(s)) ? `"${s.replace(/"/g, '""')}"` : s;
   }
   function serialize(rows, sep) { return rows.map(row => row.map(v => quoteField(v, sep)).join(sep)).join('\r\n'); }
+  function removeLineBreaks(value, useSpaces) {
+    return value.replace(/\r\n|\n\r|\r|\n/g, useSpaces ? ' ' : '');
+  }
 
   function displayError(message) { lastError = message; errorBox.textContent = message; errorBox.hidden = false; }
   function clearError() { lastError = ''; errorBox.hidden = true; errorBox.textContent = ''; }
@@ -122,7 +125,7 @@
     columnSelect.disabled = headers.length === 0;
     if (Number.isInteger(old) && old >= 0 && old < headers.length) columnSelect.value = String(old);
     else {
-      const guess = headers.findIndex(h => /comment|feedback|review|message|note|description/i.test(h));
+      const guess = headers.findIndex(h => /comment|feedback|review|message|note|description|kommenteeri/i.test(h));
       columnSelect.value = String(guess >= 0 ? guess : Math.max(headers.length - 1, 0));
     }
     $('input-meta').textContent = `${records.length.toLocaleString()} ${t(records.length === 1 ? 'row' : 'rows')} · ${headers.length} ${t(headers.length === 1 ? 'column' : 'columns')}`;
@@ -133,7 +136,7 @@
   function renderResult() {
     if (!headers.length) return;
     const idx = Number(columnSelect.value);
-    const clean = records.map(row => row.map((value, i) => i === idx ? value.replace(/[\r\n]/g, $('trim-spaces').checked ? ' ' : '') : value));
+    const clean = records.map(row => row.map((value, i) => i === idx ? removeLineBreaks(value, $('trim-spaces').checked) : value));
     const rows = [headers, ...clean];
     fixedCsv = serialize(rows, delimiter);
     output.textContent = fixedCsv.length > 24000 ? fixedCsv.slice(0, 24000) + '\n\n' + t('previewShort') : fixedCsv;

@@ -17,52 +17,52 @@
       <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 4.75h14a1.25 1.25 0 0 1 1.25 1.25v12A1.25 1.25 0 0 1 19 19.25H5A1.25 1.25 0 0 1 3.75 18V6A1.25 1.25 0 0 1 5 4.75Z"/><path d="M8 8h8M8 12h3m2 0h3M8 16h8"/></svg></span>
       <span>CSV <span class="brand-light">Line Break Fixer</span></span>
     </a>
-    <div class="privacy"><span class="privacy-dot"></span> Private by design <span class="privacy-divider">·</span> runs in your browser</div>
+    <div class="header-tools"><div class="privacy"><span class="privacy-dot"></span> <span data-i18n="privacy">Private by design</span> <span class="privacy-divider">·</span> <span data-i18n="browser">runs in your browser</span></div><div class="language-switch" role="group" aria-label="Language"><button type="button" class="language-button active" data-language="en" aria-pressed="true">EN</button><button type="button" class="language-button" data-language="et" aria-pressed="false">ET</button></div></div>
   </header>
 
   <main>
     <section class="intro">
-      <div class="eyebrow"><span class="eyebrow-icon">✳</span> A cleaner CSV, in seconds</div>
-      <h1>Keep your comments<br><span>in one piece.</span></h1>
-      <p class="lede">Remove unwanted line breaks inside CSV comments without changing the rest of your file. Simple, safe, and all in your browser.</p>
+      <div class="eyebrow"><span class="eyebrow-icon">✳</span> <span data-i18n="eyebrow">A cleaner CSV, in seconds</span></div>
+      <h1><span data-i18n="headline1">Keep your comments</span><br><span data-i18n="headline2">in one piece.</span></h1>
+      <p class="lede" data-i18n="lede">Remove unwanted line breaks inside CSV comments without changing the rest of your file. Simple, safe, and all in your browser.</p>
     </section>
 
     <section class="workspace" aria-label="CSV repair workspace">
-      <div class="step-heading"><span class="step-number">1</span><div><h2>Add your CSV</h2><p>Paste CSV text or choose a file from your device.</p></div></div>
+      <div class="step-heading"><span class="step-number">1</span><div><h2 data-i18n="step1">Add your CSV</h2><p data-i18n="step1desc">Paste CSV text or choose a file from your device.</p></div></div>
       <div class="input-card">
-        <div class="input-tabs" role="tablist" aria-label="Input method">
-          <button class="tab active" id="paste-tab" role="tab" aria-selected="true" aria-controls="paste-panel">Paste CSV</button>
-          <button class="tab" id="upload-tab" role="tab" aria-selected="false" aria-controls="upload-panel">Upload a file</button>
-          <span class="tab-spacer"></span><span class="format-hint">CSV · TSV supported</span>
+        <div class="input-tabs" role="tablist" aria-label="Input method" data-i18n-aria="inputMethod">
+          <button class="tab active" id="paste-tab" role="tab" aria-selected="true" aria-controls="paste-panel" data-i18n="pasteTab">Paste CSV</button>
+          <button class="tab" id="upload-tab" role="tab" aria-selected="false" aria-controls="upload-panel" data-i18n="uploadTab">Upload a file</button>
+          <span class="tab-spacer"></span><span class="format-hint" data-i18n="formatHint">CSV · TSV supported</span>
         </div>
         <div id="paste-panel" class="tab-panel" role="tabpanel" aria-labelledby="paste-tab">
-          <textarea id="csv-input" spellcheck="false" aria-label="Paste your CSV here" placeholder="Paste your CSV here…&#10;&#10;For example:&#10;name,comment,rating&#10;Alex,&quot;Loved the product!&#10;Shipping was quick, too.&quot;,5&#10;Sam,&quot;Great quality&quot;,4"></textarea>
-          <div class="input-footer"><span id="input-meta">Nothing pasted yet</span><button class="text-button" id="load-example" type="button">Try an example <span aria-hidden="true">↗</span></button></div>
+          <textarea id="csv-input" spellcheck="false" aria-label="Paste your CSV here" data-i18n-aria="pasteAria" data-i18n-placeholder="pastePlaceholder" placeholder="Paste your CSV here…&#10;&#10;For example:&#10;name,comment,rating&#10;Alex,&quot;Loved the product!&#10;Shipping was quick, too.&quot;,5&#10;Sam,&quot;Great quality&quot;,4"></textarea>
+          <div class="input-footer"><span id="input-meta" data-i18n="nothingPasted">Nothing pasted yet</span><button class="text-button" id="load-example" type="button"><span data-i18n="tryExample">Try an example</span> <span aria-hidden="true">↗</span></button></div>
         </div>
         <div id="upload-panel" class="tab-panel hidden" role="tabpanel" aria-labelledby="upload-tab">
-          <label class="dropzone" id="dropzone" for="file-input"><span class="upload-icon"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4.25A1.75 1.75 0 0 0 6.75 20h10.5A1.75 1.75 0 0 0 19 18.25V14"/></svg></span><strong>Drop your CSV file here</strong><span>or <em>browse files</em> on your device</span><small>CSV and TSV files · up to 50 MB</small><input id="file-input" type="file" accept=".csv,.tsv,text/csv,text/tab-separated-values,text/plain"></label>
-          <div class="input-footer"><span id="file-meta">Your file stays on this device</span></div>
+          <label class="dropzone" id="dropzone" for="file-input"><span class="upload-icon"><svg viewBox="0 0 24 24"><path d="M12 16V4m0 0L7.5 8.5M12 4l4.5 4.5M5 14v4.25A1.75 1.75 0 0 0 6.75 20h10.5A1.75 1.75 0 0 0 19 18.25V14"/></svg></span><strong data-i18n="dropFile">Drop your CSV file here</strong><span><span data-i18n="or">or</span> <em data-i18n="browse">browse files</em> <span data-i18n="onDevice">on your device</span></span><small data-i18n="fileLimit">CSV and TSV files · up to 50 MB</small><input id="file-input" type="file" accept=".csv,.tsv,text/csv,text/tab-separated-values,text/plain"></label>
+          <div class="input-footer"><span id="file-meta" data-i18n="filePrivate">Your file stays on this device</span></div>
         </div>
       </div>
 
-      <div class="step-heading step-two"><span class="step-number">2</span><div><h2>Choose what to fix</h2><p>We’ll join line breaks in this column only. All other data stays as it is.</p></div></div>
+      <div class="step-heading step-two"><span class="step-number">2</span><div><h2 data-i18n="step2">Choose what to fix</h2><p data-i18n="step2desc">We’ll join line breaks in this column only. All other data stays as it is.</p></div></div>
       <div class="options-card">
-        <div class="column-select-wrap"><label for="column-select">Comment column</label><div class="select-shell"><select id="column-select" disabled><option>Paste or upload a CSV first</option></select><span aria-hidden="true">⌄</span></div></div>
-        <div class="separator-wrap"><label for="separator-select">Values separated by</label><div class="select-shell"><select id="separator-select" aria-label="Values separated by"><option value="auto">Auto-detect</option><option value=",">Comma</option><option value=";">Semicolon</option><option value="\t">Tab</option><option value="|">Pipe</option></select><span aria-hidden="true">⌄</span></div></div>
-        <label class="toggle-row"><span class="switch"><input type="checkbox" id="trim-spaces" checked><span class="switch-track"></span></span><span><strong>Replace breaks with a space</strong><small>Keeps words from running together</small></span></label>
+        <div class="column-select-wrap"><label for="column-select" data-i18n="commentColumn">Comment column</label><div class="select-shell"><select id="column-select" disabled><option>Paste or upload a CSV first</option></select><span aria-hidden="true">⌄</span></div></div>
+        <div class="separator-wrap"><label for="separator-select" data-i18n="separatorLabel">Values separated by</label><div class="select-shell"><select id="separator-select" aria-label="Values separated by" data-i18n-aria="separatorLabel"><option value="auto" data-i18n="autoDetect">Auto-detect</option><option value="," data-i18n="comma">Comma</option><option value=";" data-i18n="semicolon">Semicolon</option><option value="\t" data-i18n="tab">Tab</option><option value="|" data-i18n="pipe">Pipe</option></select><span aria-hidden="true">⌄</span></div></div>
+        <label class="toggle-row"><span class="switch"><input type="checkbox" id="trim-spaces" checked><span class="switch-track"></span></span><span><strong data-i18n="replaceSpace">Replace breaks with a space</strong><small data-i18n="preserveWords">Keeps words from running together</small></span></label>
       </div>
 
       <div id="error-message" class="error-message" role="alert" hidden></div>
-      <div class="step-heading step-three"><span class="step-number">3</span><div><h2>Your cleaned CSV</h2><p>Review the result, then copy or download it.</p></div><span class="result-count" id="result-count" hidden></span></div>
+      <div class="step-heading step-three"><span class="step-number">3</span><div><h2 data-i18n="step3">Your cleaned CSV</h2><p data-i18n="step3desc">Review the result, then copy or download it.</p></div><span class="result-count" id="result-count" hidden></span></div>
       <div class="output-card" id="output-card">
-        <div class="empty-state" id="empty-state"><span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M6.75 3.75h7.5l4 4v12a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-15a1 1 0 0 1 .5-1Z"/><path d="M14 4v4h4M9 12h6m-6 3h6"/></svg></span><strong>Your fixed CSV will appear here</strong><span>Add some CSV above to get started</span></div>
-        <div class="preview-wrap hidden" id="preview-wrap"><pre id="csv-output" aria-label="Cleaned CSV preview"></pre></div>
-        <div class="output-footer"><span id="output-meta">Ready when you are</span><div class="output-actions"><button id="copy-button" class="button button-secondary" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg>Copy</button><button id="download-button" class="button button-primary" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 17v2.25A1.75 1.75 0 0 0 6.75 21h10.5A1.75 1.75 0 0 0 19 19.25V17"/></svg>Download CSV</button></div></div>
+        <div class="empty-state" id="empty-state"><span class="empty-icon"><svg viewBox="0 0 24 24"><path d="M6.75 3.75h7.5l4 4v12a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-15a1 1 0 0 1 .5-1Z"/><path d="M14 4v4h4M9 12h6m-6 3h6"/></svg></span><strong data-i18n="emptyTitle">Your fixed CSV will appear here</strong><span data-i18n="emptyDesc">Add some CSV above to get started</span></div>
+        <div class="preview-wrap hidden" id="preview-wrap"><pre id="csv-output" aria-label="Cleaned CSV preview" data-i18n-aria="previewAria"></pre></div>
+        <div class="output-footer"><span id="output-meta" data-i18n="ready">Ready when you are</span><div class="output-actions"><button id="copy-button" class="button button-secondary" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M16 8V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h2"/></svg><span data-i18n="copy">Copy</span></button><button id="download-button" class="button button-primary" type="button" disabled><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4v11m0 0 4-4m-4 4-4-4M5 17v2.25A1.75 1.75 0 0 0 6.75 21h10.5A1.75 1.75 0 0 0 19 19.25V17"/></svg><span data-i18n="download">Download CSV</span></button></div></div>
       </div>
-      <p class="footnote"><span>✦</span> Your data never leaves your browser. Nothing is uploaded or stored.</p>
+      <p class="footnote"><span>✦</span> <span data-i18n="footnote">Your data never leaves your browser. Nothing is uploaded or stored.</span></p>
     </section>
   </main>
-  <footer><span>Made for smoother imports.</span><span>Free to use · No account needed</span></footer>
+  <footer><span data-i18n="footerMade">Made for smoother imports.</span><span data-i18n="footerFree">Free to use · No account needed</span></footer>
   <script src="app.js"></script>
 </body>
 </html>

@@ -13,7 +13,7 @@
   let records = [];
   let fixedCsv = '';
   let inputKind = 'paste';
-  let language = localStorage.getItem('csv-fixer-language') === 'et' ? 'et' : 'en';
+  let language = localStorage.getItem('csv-fixer-language') || 'et';
   let lastError = '';
   let lastCopied = false;
   let pasteSource = '';

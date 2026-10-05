@@ -16,6 +16,9 @@
   let language = localStorage.getItem('csv-fixer-language') === 'et' ? 'et' : 'en';
   let lastError = '';
   let lastCopied = false;
+  let pasteSource = '';
+  let uploadSource = '';
+  let uploadName = '';
 
   const messages = {
     en: {
@@ -147,12 +150,16 @@
     $('paste-tab').classList.toggle('active', paste); $('paste-tab').setAttribute('aria-selected', String(paste));
     $('upload-tab').classList.toggle('active', !paste); $('upload-tab').setAttribute('aria-selected', String(!paste));
     $('paste-panel').classList.toggle('hidden', !paste); $('upload-panel').classList.toggle('hidden', paste);
-    if (paste && sourceName !== 'cleaned.csv') { input.value = source; }
-    if (!paste) { source = input.value; }
+    if (paste) {
+      source = pasteSource;
+      input.value = pasteSource;
+    } else {
+      source = uploadSource;
+    }
     refresh();
   }
 
-  input.addEventListener('input', () => { inputKind = 'paste'; source = input.value; refresh(); });
+  input.addEventListener('input', () => { inputKind = 'paste'; pasteSource = input.value; source = pasteSource; refresh(); });
   $('paste-tab').addEventListener('click', () => showTab('paste'));
   $('upload-tab').addEventListener('click', () => showTab('upload'));
   separatorSelect.addEventListener('change', refresh);
@@ -160,14 +167,18 @@
   $('trim-spaces').addEventListener('change', renderResult);
   $('load-example').addEventListener('click', () => {
     input.value = 'name,comment,rating\nAlex,"Loved the product!\nShipping was quick, too.",5\nSam,"Great quality\nand friendly support.",4\nJordan,"Works exactly as expected.",5';
-    inputKind = 'paste'; sourceName = 'cleaned.csv'; showTab('paste'); input.focus();
+    pasteSource = input.value; inputKind = 'paste'; sourceName = 'cleaned.csv'; showTab('paste'); input.focus();
   });
   fileInput.addEventListener('change', async () => {
     const file = fileInput.files && fileInput.files[0]; if (!file) return;
     if (file.size > 50 * 1024 * 1024) { displayError(t('tooLarge')); return; }
-    sourceName = file.name.replace(/\.(csv|tsv)$/i, '') + '-cleaned.csv';
-    try { source = await file.text(); inputKind = 'upload'; showTab('upload'); }
-    catch { displayError(t('readFail')); }
+    inputKind = 'upload'; uploadSource = ''; source = ''; setPlaceholderState(); clearError();
+    $('file-meta').textContent = `${file.name} · ${formatBytes(file.size)} · ${language === 'et' ? 'loen faili…' : 'reading file…'}`;
+    try {
+      uploadSource = await file.text(); uploadName = file.name.replace(/\.(csv|tsv)$/i, '') + '-cleaned.csv';
+      sourceName = uploadName; inputKind = 'upload'; source = uploadSource; showTab('upload');
+    }
+    catch { $('file-meta').textContent = language === 'et' ? 'Faili ei saanud avada' : 'Could not open this file'; displayError(t('readFail')); }
   });
   const dropzone = $('dropzone');
   for (const eventName of ['dragenter', 'dragover']) dropzone.addEventListener(eventName, e => { e.preventDefault(); dropzone.classList.add('dragover'); });

@@ -133,7 +133,7 @@
   function renderResult() {
     if (!headers.length) return;
     const idx = Number(columnSelect.value);
-    const clean = records.map(row => row.map((value, i) => i === idx ? value.replace(/[\r\n]+/g, $('trim-spaces').checked ? ' ' : '') : value));
+    const clean = records.map(row => row.map((value, i) => i === idx ? value.replace(/[\r\n]/g, $('trim-spaces').checked ? ' ' : '') : value));
     const rows = [headers, ...clean];
     fixedCsv = serialize(rows, delimiter);
     output.textContent = fixedCsv.length > 24000 ? fixedCsv.slice(0, 24000) + '\n\n' + t('previewShort') : fixedCsv;
